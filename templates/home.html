@@ -1,3 +1,115 @@
-<h1>
-    Ruju Shah
-</h1>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boston House Prediction</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: #f0f0f0; /* Set your desired background color */
+    }
+
+    .container {
+      display: flex;
+    }
+
+    .left-panel {
+      flex: 1;
+      padding: 20px;
+      background-color: #3498db; /* Set your desired background color */
+      color: #ffffff;
+      text-align: center;
+    }
+
+    .left-panel h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    .left-panel img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .right-panel {
+      flex: 1;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .right-panel form {
+      max-width: 400px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .right-panel input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+
+    .right-panel button {
+      width: 100%;
+      padding: 10px;
+      background-color: #3498db; /* Set your desired button color */
+      color: #ffffff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .right-panel button:hover {
+      background-color: #2980b9; /* Set your desired button hover color */
+    }
+
+    .right-panel .result {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="left-panel">
+      <header>
+        <h1>Boston House Prediction</h1>
+        <img src="static/boston_image.gif" alt="Boston House Gif">
+      </header>
+    </div>
+
+    <div class="right-panel">
+      <form action="{{ url_for('predict')}}" method="post">
+        <input type="text" name="CRIM" placeholder="Per capita crime rate by town" required="required" /><br>
+        <input type="text" name="ZN" placeholder="Proportion of residential land zoned for lots over 25,000 sq.ft." required="required" /><br>
+        <input type="text" name="INDUS" placeholder="Proportion of non-retail business acres per town" required="required" /><br>
+        <input type="text" name="CHAS" placeholder="Charles River dummy variable (1 if tract bounds river; else 0)" required="required" /><br>
+        <input type="text" name="NOX" placeholder="Nitric oxides concentration (parts per 10 million)" required="required" /><br>
+        <input type="text" name="RM" placeholder="Average number of rooms per dwelling" required="required" /><br>
+        <input type="text" name="AGE" placeholder="Proportion of owner-occupied units built prior to 1940" required="required" /><br>
+        <input type="text" name="DIS" placeholder="Weighted distances to five Boston employment centres" required="required" /><br>
+        <input type="text" name="RAD" placeholder="Index of accessibility to radial highways" required="required" /><br>
+        <input type="text" name="TAX" placeholder="Full-value property-tax rate per ten thousand dollars" required="required" /><br>
+        <input type="text" name="PTRATIO" placeholder="Pupil-teacher ratio by town" required="required" /><br>
+        <input type="text" name="B" placeholder="Proportion of blacks by town" required="required" /><br>
+        <input type="text" name="LSTAT" placeholder="Percentage of the population classified as % lower status" required="required" /><br>
+
+        <button type="submit">Estimate Price</button>
+      </form>
+
+      <div class="result">
+        {{prediction_text}}
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
